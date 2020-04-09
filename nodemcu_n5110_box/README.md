@@ -17,6 +17,10 @@ Box to projects with the NodeMCU board and a Nokia 5110 display.
 ![bodyxcutoff](body_pic_cutoff_y.png)
 
 **STL models have not the Nokia 5110 and NodeMCU models included**
+
+## Links
+GrabCAD community: https://grabcad.com/library/box-for-nodemcu-nokia-5110-projects-1
+
 ## Dimensions
 All dimensions can be adjusted by editing the scad script.
 The pre-defined size is:

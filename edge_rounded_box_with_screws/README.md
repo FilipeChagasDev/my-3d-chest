@@ -1,8 +1,10 @@
 # Edge rounded box with screws
+This is a small box with a separate lid and body. These two pieces can be fixed with screws and nuts.
 
 ![pic](pic.png)
 
-This is a small box with a separate lid and body. These two pieces can be fixed with screws and nuts.
+## Links
+GrabCAD community: https://grabcad.com/library/edge-rounded-box-with-screw-holes-1
 
 ## Dimensions
 All dimensions can be adjusted by editing the scad script.
