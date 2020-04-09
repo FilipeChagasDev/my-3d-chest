@@ -108,11 +108,11 @@ module rounded_top_open_box(xlen, ylen, zlen, radius, screw_radius = 0, thicknes
             
             // x screw
             translate([xlen/2 - screw_holder_sz/2,thickness,zlen])
-                screw_holder(screw_holder_sz, screw_holder_h, screw_radius);
+                screw_holder(screw_holder_sz, screw_holder_h, screw_radius, true, thickness);
             
             // xy screw
             translate([xlen/2 - screw_holder_sz/2,ylen - 2*thickness,zlen])
-                screw_holder(screw_holder_sz, screw_holder_h, screw_radius);
+                screw_holder(screw_holder_sz, screw_holder_h, screw_radius, true, thickness);
         }
     }
     else
@@ -156,60 +156,102 @@ module rounded_bottom_open_box(xlen, ylen, zlen, radius, screw_radius = 0, thick
     }
 }
 
-module n5110()
-{
-    /*
-    color([0.7,0.7,0.7])
-        import("n5110.stl");
-    */
-    
-    color([0.0,0.0,0.7])
-        translate([-0.15,0.8,0])
-            cube([40.5,34.5,10], center=true);
-    
-    translate([17.2,-20.3,0])
-        cylinder(10,1.6,1.6);
-    
-    translate([-17.35,-20.3,0])
-        cylinder(10,1.6,1.6);
-    
-    translate([17.1,20.7,0])
-        cylinder(10,1.6,1.6);
-    
-    translate([-17.4,20.7,0])
-        cylinder(10,1.6,1.6);
-}
-
-module lid(xlen, ylen, zlen, radius, screw_radius, thickness = 3)
+module clamp_hole(width, height, internal_width, internal_height, thickness = 3)
 {
     difference()
     {
-        rounded_bottom_open_box(xlen, ylen, zlen, radius, screw_radius);
-        translate([xlen/2,ylen/2,zlen-4]) n5110();
+        cube([width, thickness, height]);
+        
+        translate([width/2 - internal_width/2, -1, 0])
+            cube([internal_width, thickness+2, internal_height]);
+        
     }
 }
+
+module nodemcu_box(xlen, ylen, zlen, radius, screw_radius = 0, thickness = 3)
+{
+    union()
+    {
+        difference()
+        {
+            rounded_top_open_box(xlen, ylen, zlen, radius, screw_radius, thickness);
+
+            translate([xlen-0.1,ylen/2,thickness - 3.5])
+                union()
+                {
+                    translate([1.999 -thickness,-10.7,0])
+                        cube([thickness + 15,21.4,10.7]);
+                        
+                    translate([-thickness,0,5.35])
+                        scale([1,1,0.5])
+                            rotate([45,0,0]) rotate([0,90,0])
+                                cylinder(2,5,15, $fn=4);
+                }
+        }
+       
+        hwoffset = 8/thickness;
+        hw = 10;
+        hh = 7;
+        iw = hw - hw/4;
+        ih = hh - hh/4;
+        
+        translate([xlen - hw - thickness + (hw/2-iw/2), ylen/2 + 15,thickness])
+            clamp_hole(hw,hh,iw,ih,3);
+        
+        translate([thickness - (hw/2-iw/2), ylen/2 + 15,thickness])
+            clamp_hole(hw + hwoffset,hh,iw + hwoffset,ih,3);
+        
+        translate([xlen - hw - thickness + (hw/2-iw/2), ylen/2 + 15,thickness])
+            clamp_hole(hw,hh,iw,ih,3);
+        
+        translate([thickness - (hw/2-iw/2), ylen/2 - 18,thickness])
+            clamp_hole(hw + hwoffset,hh,iw + hwoffset,ih,3);
+        
+        translate([xlen - hw - thickness + (hw/2-iw/2), ylen/2 - 18,thickness])
+            clamp_hole(hw,hh,iw,ih,3);
+    }
+}
+
 
 // ------------------------------------------------------
 // ---------------- MAIN PARAMETERS ---------------------
 // ------------------------------------------------------
 
-
 xlen = 60; //width
 ylen = 60; //depth
-zlen = 20; //height
+zlen = 40; //height
 radius = 5; //edge rounding radius
+screw_radius = 1.5; //screw hole radius
 thcknss = 3; //structure thickness
-screw_radius = 1.5; //screw holes radius
-show_display = true; //set it false for printing
 
-// -----------------------------------------------------
+include_nodemcu = true; //set it false for printing
+cut_x = false; //set it false for printing
+cut_y = false; //set it false for printing
 
-color([0.8,0.8,0.8])
-    lid(xlen, ylen, zlen, radius, screw_radius,thcknss);
+// ------------------------------------------------------
 
-if(show_display)
+difference()
 {
-    color([1,0,0])
-        translate([xlen/2,xlen/2,zlen-5])
-            import("n5110.stl");
+    color([0.5,0.5,0.5])
+        nodemcu_box(xlen, ylen, zlen, radius, screw_radius,thcknss);
+
+    if (cut_x)
+    {
+        translate([xlen/2,-1,-50])
+            cube([xlen/2+1,ylen+2,zlen+100]);
+    }
+    
+    if (cut_y)
+    {
+        translate([-1,-1,-50])
+            cube([xlen+2,ylen/2+2,zlen+100]);
+    }
+}
+
+if(include_nodemcu)
+{
+    color([0.9,0.1,0.1])
+        translate([60 - thcknss,17,13 + thcknss])
+            rotate([90,180,90*3])
+                import("../stl/nodemcu.stl");
 }

@@ -2,19 +2,19 @@
 Box to projects with the NodeMCU board and a Nokia 5110 display.
 
 ### Lid (with the Nokia 5110 display module)
-![lidpic0](lid_pic0.png)
-![lidpic1](lid_pic1.png)
+![lidpic0](pics/lid_pic0.png)
+![lidpic1](pics/lid_pic1.png)
 
 ### Body (with the NodeMCU board)
-![bodypic0](body_pic0.png)
-![bodypic1](body_pic1.png)
-![bodypic2](body_pic2.png)
+![bodypic0](pics/body_pic0.png)
+![bodypic1](pics/body_pic1.png)
+![bodypic2](pics/body_pic2.png)
 
 ### Body (x-axis cut off)
-![bodyxcutoff](body_pic_cutoff_x.png)
+![bodyxcutoff](pics/body_pic_cutoff_x.png)
 
 ### Body (y-axis cut off)
-![bodyxcutoff](body_pic_cutoff_y.png)
+![bodyxcutoff](pics/body_pic_cutoff_y.png)
 
 **STL models have not the Nokia 5110 and NodeMCU models included**
 
