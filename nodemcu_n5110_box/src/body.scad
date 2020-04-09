@@ -209,6 +209,19 @@ module nodemcu_box(xlen, ylen, zlen, radius, screw_radius = 0, thickness = 3)
         
         translate([xlen - hw - thickness + (hw/2-iw/2), ylen/2 - 18,thickness])
             clamp_hole(hw,hh,iw,ih,3);
+        
+        nodemcu_hole_radius = 1.25;
+        translate([xlen - thickness - 2.6, ylen/2 - 11,thickness])
+            cylinder(5,nodemcu_hole_radius,nodemcu_hole_radius);
+            
+        translate([xlen - thickness - 2.6, ylen/2 + 11,thickness])
+            cylinder(5,nodemcu_hole_radius,nodemcu_hole_radius);
+            
+        translate([xlen - thickness - 46.8, ylen/2 - 11,thickness])
+            cylinder(5,nodemcu_hole_radius,nodemcu_hole_radius);
+            
+        translate([xlen - thickness - 46.8, ylen/2 + 11,thickness])
+            cylinder(5,nodemcu_hole_radius,nodemcu_hole_radius);
     }
 }
 
