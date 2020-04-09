@@ -121,11 +121,11 @@ module rounded_top_open_box(xlen, ylen, zlen, radius, screw_radius = 0, thicknes
             
             // x screw
             translate([xlen/2 - screw_holder_sz/2,thickness,zlen])
-                screw_holder(screw_holder_sz, screw_holder_h, screw_radius);
+                screw_holder(screw_holder_sz, screw_holder_h, screw_radius, true, thickness);
             
             // xy screw
             translate([xlen/2 - screw_holder_sz/2,ylen - 2*thickness,zlen])
-                screw_holder(screw_holder_sz, screw_holder_h, screw_radius);
+                screw_holder(screw_holder_sz, screw_holder_h, screw_radius, true, thickness);
         }
     }
     else
@@ -176,6 +176,7 @@ module rounded_bottom_open_box(xlen, ylen, zlen, radius, screw_radius = 0, thick
 w = 60; //box width (x lenght)
 d = 60; //box deoth (y lenght)
 h = 60; //box height (z lenght)
+thcknss = 3; //structure thickness
 toph = 20; //top box slice height
 botth = h - toph; //bottom box slice height
 r = 5; //rounding radius
@@ -188,17 +189,17 @@ if(box_open)
 {
     translate([w+5, 0, 0])
         color([0.8,0.8,0.8])
-            rounded_bottom_open_box(w,d,toph,r,screw_r);
+            rounded_bottom_open_box(w,d,toph,r,screw_r, thcknss);
 
     color([0.8,0.8,0.8])
-        rounded_top_open_box(w,d,botth,r,screw_r);
+        rounded_top_open_box(w,d,botth,r,screw_r, thcknss);
 }
 else
 {
     translate([0, 0, botth])
         color([0.7,0.7,0.7])
-            rounded_bottom_open_box(w,d,toph,r,screw_r);
+            rounded_bottom_open_box(w,d,toph,r,screw_r, thcknss);
 
     color([0.3,0.3,0.3])
-        rounded_top_open_box(w,d,botth,r,screw_r);
+        rounded_top_open_box(w,d,botth,r,screw_r, thcknss);
 }

@@ -18,6 +18,7 @@ The pre-defined size is:
 |Z length (height)| 6cm |
 |Edge radius| 5mm |
 |Screw radius| 1.5mm |
+|Structure Thickness| 3mm |
 
 ### For each piece
 |Piece|Height|
