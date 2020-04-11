@@ -5,7 +5,16 @@
 
 **My collection of OpenSCAD 3D models**
 
-These models are mainly intended for 3D printing for the construction  of projects for electronics, embedded systems and robotics.
+These models are mainly intended for 3D printing for the construction  of:
+* Cases or boxes for electronic boards and devices
+* Wrapping structures for electronic devices for personal or industrial use
+* Static or mechanical structures for robotics projects
+* Miscellaneous objects for personal use
 
-## Links
-My GrabCAD community profile: https://grabcad.com/filipe.chagas-2
+## Author
+|My|...|
+|---|---|
+|Name | Filipe Chagas |
+|GitHub profile | github.com/filipechagasdev |
+|Email | filipe.ferraz0@gmail.com |
+|GrabCAD community profile | https://grabcad.com/filipe.chagas-2 |
